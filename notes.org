@@ -1,0 +1,22 @@
+
+
+* Docker Machine
+
+
+docker-machine ssh
+
+
+* Nukkit 
+
+
+https://hub.docker.com/r/ixilon/nukkit/
+
+docker run -it -p 19132:19132/udp --name minecraft ixilon/nukkit:1.0.8
+
+docker exec -i -t minecraft /bin/bash
+
+mkdir ~/nukkit
+docker run -it -v ~/nukkit:/srv/nukkit --name minecraft   -p 19132:19132/udp  ixilon/nukkit:1.0.8
+
+* 172.20.1.11
+

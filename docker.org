@@ -1,0 +1,122 @@
+#+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+REVEAL_EXTRA_CSS: css/object-partners-revealjs-theme.css
+#+REVEAL_EXTRA_CSS: css/font-awesome.min.css
+#+REVEAL_EXTRA_CSS: css/custom.css
+#+OPTIONS: num:nil
+#+OPTIONS: reveal_title_slide:nil
+#+OPTIONS: toc:nil
+#+DATE:
+#+REVEAL_PLUGINS: notes
+#+TITLE: Docker For Developers
+
+
+* Docker for Developers
+
+*Mike Hostetler*
+
+Principal Consultant @ Object Partners, Inc
+
+#+HTML:<i class="fa fa-twitter" aria-hidden="true"></i> mikehoss42 <br/>
+
+#+HTML:<i class="fa fa-github" aria-hidden="true"></i> squarepegsys
+
+** About Object Partners
+
+We usually call ourselves "OPI"
+
+- Founded 1996
+- Java, Groovy, JavaScript, Mobile, DevOps
+- 100 Senior Consultants
+- Omaha, Minneapolis, Chicago
+- Average Tenure Over 5 years
+
+* Why  Docker?
+
+#+BEGIN_QUOTE
+
+Developers use Docker to eliminate “works on my machine” problems when collaborating on code with co-workers. Operators use Docker to run and manage apps side-by-side in isolated containers to get better compute density. Enterprises use Docker to build agile software delivery pipelines to ship new features faster, more securely and with confidence for both Linux and Windows Server apps.
+#+END_QUOTE
+
+
+** No, seriously, why Docker?
+
+As a Developer, I should care because its:
+
+- Keep your dependencies all in one place.
+- Have different versions of the same server running on your machine.
+- Easy to delete a Docker-run service.
+- Easy to setup a dev environment for new developers
+- Portable
+- Free (The Community version, anyway)
+
+* My Docker Story
+
+#+BEGIN_NOTES
+Talk about c12 and "no I can't ship you a docker image"
+#+END_NOTES
+
+
+* How does Docker work anyway?
+
+Uses Containers Running on a Docker Host
+
+** Containers
+
+- The services that we want run on the Containers
+- The Docker Host runs the Containers
+- Container1 doesn't interfere (but can access ) Container2
+
+** Docker Host
+
+- A Linux VM (by default, a headless VirtualBox)
+- Uses the Linux kernel's virtualization features to keep the processes (i.e Containers) in isolation.
+- Usually don't have to do anything with the Docker Host (besides you make sure that it's running).
+
+** Putting it all together
+
+[[./docker-diagram.png]]
+
+
+
+** VMs vs Containers
+
+ - The Docker Host runs in a VM in your workstation 
+ - The Containers run inside of the Docker Host *not* as VMs. They share resources (libraries, kernel, etc).
+ - The Container are what run the services that you want (like DBs, AppServers, etc)
+
+** More on Containers
+
+- Ports to connect to are ports on the Host, *not* on the Container
+- Think of Containers not as machines but services running on the Docker Host.
+
+** Getting a Service from  Container
+
+#+BEGIN_SRC shell
+docker run <name>
+#+END_SRC
+
+Wait, really?
+
+** Or GUI
+
+   [[./imgs/kinematic.jpg]]
+
+** Keeping Your Data
+
+It's hard to get to your own data and settings in the Container. The easiest way is to keep your data on your drive.  To do that, you have to make a Volume. A Volume is simply a mapping from your workstation to a folder in the Container. So your data stays on your workstation.
+
+** Customizing
+
+You can also create your own Containers! Or tweak the existing ones! (not covered today).
+
+
+* Interfaces
+
+- Command line (like ~docker run name~) 
+- GUIs (Kinematic)
+
+The CLI is more exact but I can get more information quicker in the GUI.
+
+* Demo
+
+
